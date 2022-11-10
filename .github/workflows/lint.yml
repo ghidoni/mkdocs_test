@@ -1,0 +1,28 @@
+name: Linter
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  CI:
+    name: CI Pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Python Setup
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+      - name: Python Setup
+        run: |
+          pip install flake8
+
+      - name: Flake8
+        run: |
+          flake8 model
